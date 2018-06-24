@@ -1,1 +1,3 @@
-# go-password
+# go-passwd
+
+Password library for Go
