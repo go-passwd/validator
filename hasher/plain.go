@@ -10,7 +10,7 @@ type PlainHasher struct {
 }
 
 // Hash a password
-func (h *PlainHasher) Hash(password string) string {
+func (h PlainHasher) Hash(password string) string {
 	return password
 }
 
