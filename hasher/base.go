@@ -9,6 +9,8 @@ import (
 const (
 	// DefaultSaltLength is a default salt length when is not set manually
 	DefaultSaltLength = 20
+
+	DefaultIter = 2048
 )
 
 // Hasher interface

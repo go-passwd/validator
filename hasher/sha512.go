@@ -22,6 +22,11 @@ func (h *SHA512Hasher) Hash(password string) string {
 		h.Salt = &salt
 	}
 
+	if h.Iter == nil {
+		iter := DefaultIter
+		h.Iter = &iter
+	}
+
 	bPassword := []byte(password + ":" + *h.Salt)
 	for i := 0; i < *h.Iter; i++ {
 		s := sha512.New()
