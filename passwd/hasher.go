@@ -11,3 +11,8 @@ func NewSHA512Hasher() hasher.SHA512Hasher {
 func NewPlainHasher() hasher.PlainHasher {
 	return hasher.PlainHasher{}
 }
+
+// NewMD5Hasher returns new default MD5 hasher
+func NewMD5Hasher() hasher.MD5Hasher {
+	return hasher.MD5Hasher{}
+}
