@@ -22,6 +22,11 @@ func NewSHA384Hasher() hasher.SHA384Hasher {
 	return hasher.SHA384Hasher{}
 }
 
+// NewSHA224Hasher returns new default SHA-224 hasher
+func NewSHA224Hasher() hasher.SHA224Hasher {
+	return hasher.SHA224Hasher{}
+}
+
 // NewPlainHasher returns new default plain hasher
 func NewPlainHasher() hasher.PlainHasher {
 	return hasher.PlainHasher{}

@@ -34,6 +34,9 @@ func NewFromString(password string) (Hasher, error) {
 	case _MD5MarshalerCode:
 		iter, _ := strconv.Atoi(p[1])
 		return &MD5Hasher{Salt: &p[2], Iter: &iter, Password: &p[3]}, nil
+	case _SHA224MarshalerCode:
+		iter, _ := strconv.Atoi(p[1])
+		return &SHA224Hasher{Salt: &p[2], Iter: &iter, Password: &p[3]}, nil
 	case _SHA384MarshalerCode:
 		iter, _ := strconv.Atoi(p[1])
 		return &SHA384Hasher{Salt: &p[2], Iter: &iter, Password: &p[3]}, nil
