@@ -8,7 +8,7 @@ import (
 	"github.com/tomi77/go-passwd/passwd/util"
 )
 
-// SHA224Hasher hash password in SHA512
+// SHA224Hasher hash password in SHA-224
 type SHA224Hasher struct {
 	Salt     *string
 	Iter     *int
@@ -34,7 +34,7 @@ func (h SHA224Hasher) Hash(password string) string {
 
 	bPassword := []byte(password + ":" + *h.Salt)
 	for i := 0; i < *h.Iter; i++ {
-		s := sha256.New()
+		s := sha256.New224()
 		s.Write(bPassword)
 		bPassword = s.Sum(nil)
 	}

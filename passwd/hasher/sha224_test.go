@@ -20,7 +20,7 @@ func TestSHA224Hasher_String(t *testing.T) {
 func TestSHA224Hasher_Check(t *testing.T) {
 	salt := "salt"
 	iter := 1
-	password := "f64671af1dd46e4a00a48a2c7c6a3658d107507391b6eb0d9111b2b3d326512b"
+	password := "8be78fd2b899875ec45e23d239c5b671a236484395676a56e74a0466"
 	h := SHA224Hasher{Salt: &salt, Iter: &iter, Password: &password}
 
 	check, err := h.Check("password")
@@ -43,7 +43,7 @@ func TestSHA224Hasher_Check(t *testing.T) {
 func TestSHA224Hasher_Hash(t *testing.T) {
 	salt := "salt"
 	iter := 1
-	password := "f64671af1dd46e4a00a48a2c7c6a3658d107507391b6eb0d9111b2b3d326512b"
+	password := "8be78fd2b899875ec45e23d239c5b671a236484395676a56e74a0466"
 	h := SHA224Hasher{Salt: &salt, Iter: &iter}
 
 	g := h.Hash("password")
