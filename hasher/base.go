@@ -18,6 +18,8 @@ const (
 type Hasher interface {
 	Hash(string) string
 
+	SetPassword(string)
+
 	Check(string) (bool, error)
 
 	String() string

@@ -37,6 +37,12 @@ func (h SHA512Hasher) Hash(password string) string {
 	return hex.EncodeToString(bPassword)
 }
 
+// SetPassword sets a password
+func (h *SHA512Hasher) SetPassword(plain string) {
+	hash := h.Hash(plain)
+	h.Password = &hash
+}
+
 // Check if hashed password is equal stored password hash
 func (h *SHA512Hasher) Check(plain string) (bool, error) {
 	return h.Hash(plain) == *h.Password, nil
