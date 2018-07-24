@@ -10,7 +10,7 @@ func TestSHA1Hasher_String(t *testing.T) {
 	password := "password"
 	h := SHA1Hasher{Salt: &salt, Iter: &iter, Password: &password}
 
-	w := "sha1:1:salt:password"
+	w := "sha1$1$salt$password"
 	g := h.String()
 	if g != w {
 		t.Errorf("Wanted %s got %s", w, g)

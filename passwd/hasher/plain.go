@@ -31,5 +31,5 @@ func (h *PlainHasher) Check(plain string) (bool, error) {
 }
 
 func (h *PlainHasher) String() string {
-	return fmt.Sprintf("%s:%s", h.Code(), *h.Password)
+	return fmt.Sprintf("%s$%s", h.Code(), *h.Password)
 }

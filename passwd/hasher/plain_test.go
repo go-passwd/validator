@@ -6,7 +6,7 @@ func TestPlainHasher_String(t *testing.T) {
 	password := "password"
 	h := PlainHasher{&password}
 
-	w := "plain:password"
+	w := "plain$password"
 	g := h.String()
 	if g != w {
 		t.Errorf("Wanted %s got %s", w, g)

@@ -54,5 +54,5 @@ func (h *SHA512_256Hasher) Check(plain string) (bool, error) {
 }
 
 func (h *SHA512_256Hasher) String() string {
-	return fmt.Sprintf("%s:%d:%s:%s", h.Code(), *h.Iter, *h.Salt, *h.Password)
+	return fmt.Sprintf("%s$%d$%s$%s", h.Code(), *h.Iter, *h.Salt, *h.Password)
 }
