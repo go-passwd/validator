@@ -32,7 +32,7 @@ func (h MD5Hasher) Hash(password string) string {
 		h.Iter = &iter
 	}
 
-	bPassword := []byte(password + ":" + *h.Salt)
+	bPassword := []byte(*h.Salt + password)
 	for i := 0; i < *h.Iter; i++ {
 		s := md5.New()
 		s.Write(bPassword)

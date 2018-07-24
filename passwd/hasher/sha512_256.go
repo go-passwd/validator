@@ -32,7 +32,7 @@ func (h SHA512_256Hasher) Hash(password string) string {
 		h.Iter = &iter
 	}
 
-	bPassword := []byte(password + ":" + *h.Salt)
+	bPassword := []byte(*h.Salt + password)
 	for i := 0; i < *h.Iter; i++ {
 		s := sha512.New512_256()
 		s.Write(bPassword)

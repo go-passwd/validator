@@ -32,7 +32,7 @@ func (h SHA384Hasher) Hash(password string) string {
 		h.Iter = &iter
 	}
 
-	bPassword := []byte(password + ":" + *h.Salt)
+	bPassword := []byte(*h.Salt + password)
 	for i := 0; i < *h.Iter; i++ {
 		s := sha512.New384()
 		s.Write(bPassword)
