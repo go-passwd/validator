@@ -2,9 +2,14 @@ package passwd
 
 import "github.com/tomi77/go-passwd/passwd/hasher"
 
-// NewSHA512Hasher returns new default SHA512 hasher
+// NewSHA512Hasher returns new default SHA-512 hasher
 func NewSHA512Hasher() hasher.SHA512Hasher {
 	return hasher.SHA512Hasher{}
+}
+
+// NewSHA384Hasher returns new default SHA-384 hasher
+func NewSHA384Hasher() hasher.SHA384Hasher {
+	return hasher.SHA384Hasher{}
 }
 
 // NewPlainHasher returns new default plain hasher
