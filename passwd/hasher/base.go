@@ -16,6 +16,9 @@ const (
 
 // Hasher interface
 type Hasher interface {
+	// Code returns internal hasher code
+	Code() string
+
 	Hash(string) string
 
 	SetPassword(string)
@@ -29,24 +32,24 @@ type Hasher interface {
 func NewFromString(password string) (Hasher, error) {
 	p := strings.Split(password, ":")
 	switch p[0] {
-	case _PlainMarshalerCode:
+	case PlainHasher{}.Code():
 		return &PlainHasher{Password: &p[1]}, nil
-	case _MD5MarshalerCode:
+	case MD5Hasher{}.Code():
 		iter, _ := strconv.Atoi(p[1])
 		return &MD5Hasher{Salt: &p[2], Iter: &iter, Password: &p[3]}, nil
-	case _SHA224MarshalerCode:
+	case SHA224Hasher{}.Code():
 		iter, _ := strconv.Atoi(p[1])
 		return &SHA224Hasher{Salt: &p[2], Iter: &iter, Password: &p[3]}, nil
-	case _SHA384MarshalerCode:
+	case SHA384Hasher{}.Code():
 		iter, _ := strconv.Atoi(p[1])
 		return &SHA384Hasher{Salt: &p[2], Iter: &iter, Password: &p[3]}, nil
-	case _SHA512MarshalerCode:
+	case SHA512Hasher{}.Code():
 		iter, _ := strconv.Atoi(p[1])
 		return &SHA512Hasher{Salt: &p[2], Iter: &iter, Password: &p[3]}, nil
-	case _SHA512_224MarshalerCode:
+	case SHA512_224Hasher{}.Code():
 		iter, _ := strconv.Atoi(p[1])
 		return &SHA512_224Hasher{Salt: &p[2], Iter: &iter, Password: &p[3]}, nil
-	case _SHA512_256MarshalerCode:
+	case SHA512_256Hasher{}.Code():
 		iter, _ := strconv.Atoi(p[1])
 		return &SHA512_256Hasher{Salt: &p[2], Iter: &iter, Password: &p[3]}, nil
 	}

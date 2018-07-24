@@ -8,13 +8,16 @@ import (
 	"github.com/tomi77/go-passwd/passwd/util"
 )
 
-const _SHA384MarshalerCode = "sha384"
-
-// SHA384Hasher hash password in SHA512
+// SHA384Hasher hash password in SHA-384
 type SHA384Hasher struct {
 	Salt     *string
 	Iter     *int
 	Password *string
+}
+
+// Code returns internal SHA-384 hasher code
+func (h SHA384Hasher) Code() string {
+	return "sha384"
 }
 
 // Hash a password
@@ -51,5 +54,5 @@ func (h *SHA384Hasher) Check(plain string) (bool, error) {
 }
 
 func (h *SHA384Hasher) String() string {
-	return fmt.Sprintf("%s:%d:%s:%s", _SHA384MarshalerCode, *h.Iter, *h.Salt, *h.Password)
+	return fmt.Sprintf("%s:%d:%s:%s", h.Code(), *h.Iter, *h.Salt, *h.Password)
 }

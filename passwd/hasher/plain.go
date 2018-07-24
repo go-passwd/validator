@@ -4,11 +4,14 @@ import (
 	"fmt"
 )
 
-const _PlainMarshalerCode = "plain"
-
 // PlainHasher stored password in plain text
 type PlainHasher struct {
 	Password *string
+}
+
+// Code returns internal plain hasher code
+func (h PlainHasher) Code() string {
+	return "plain"
 }
 
 // Hash a password
@@ -28,5 +31,5 @@ func (h *PlainHasher) Check(plain string) (bool, error) {
 }
 
 func (h *PlainHasher) String() string {
-	return fmt.Sprintf("%s:%s", _PlainMarshalerCode, *h.Password)
+	return fmt.Sprintf("%s:%s", h.Code(), *h.Password)
 }
