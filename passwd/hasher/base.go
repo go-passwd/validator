@@ -40,6 +40,9 @@ func NewFromString(password string) (Hasher, error) {
 	case SHA224Hasher{}.Code():
 		iter, _ := strconv.Atoi(p[1])
 		return &SHA224Hasher{Salt: &p[2], Iter: &iter, Password: &p[3]}, nil
+	case SHA256Hasher{}.Code():
+		iter, _ := strconv.Atoi(p[1])
+		return &SHA256Hasher{Salt: &p[2], Iter: &iter, Password: &p[3]}, nil
 	case SHA384Hasher{}.Code():
 		iter, _ := strconv.Atoi(p[1])
 		return &SHA384Hasher{Salt: &p[2], Iter: &iter, Password: &p[3]}, nil

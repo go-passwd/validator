@@ -22,17 +22,22 @@ func NewSHA384Hasher() hasher.SHA384Hasher {
 	return hasher.SHA384Hasher{}
 }
 
+// NewSHA256Hasher returns new default SHA-256 hasher
+func NewSHA256Hasher() hasher.SHA256Hasher {
+	return hasher.SHA256Hasher{}
+}
+
 // NewSHA224Hasher returns new default SHA-224 hasher
 func NewSHA224Hasher() hasher.SHA224Hasher {
 	return hasher.SHA224Hasher{}
 }
 
-// NewPlainHasher returns new default plain hasher
-func NewPlainHasher() hasher.PlainHasher {
-	return hasher.PlainHasher{}
-}
-
 // NewMD5Hasher returns new default MD5 hasher
 func NewMD5Hasher() hasher.MD5Hasher {
 	return hasher.MD5Hasher{}
+}
+
+// NewPlainHasher returns new default plain hasher
+func NewPlainHasher() hasher.PlainHasher {
+	return hasher.PlainHasher{}
 }
