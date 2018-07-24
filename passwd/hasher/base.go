@@ -29,17 +29,20 @@ type Hasher interface {
 func NewFromString(password string) (Hasher, error) {
 	p := strings.Split(password, ":")
 	switch p[0] {
-	case "plain":
+	case _PlainMarshalerCode:
 		return &PlainHasher{Password: &p[1]}, nil
-	case "md5":
+	case _MD5MarshalerCode:
 		iter, _ := strconv.Atoi(p[1])
 		return &MD5Hasher{Salt: &p[2], Iter: &iter, Password: &p[3]}, nil
-	case "sha384":
+	case _SHA384MarshalerCode:
 		iter, _ := strconv.Atoi(p[1])
 		return &SHA384Hasher{Salt: &p[2], Iter: &iter, Password: &p[3]}, nil
-	case "sha512":
+	case _SHA512MarshalerCode:
 		iter, _ := strconv.Atoi(p[1])
 		return &SHA512Hasher{Salt: &p[2], Iter: &iter, Password: &p[3]}, nil
+	case _SHA512_224MarshalerCode:
+		iter, _ := strconv.Atoi(p[1])
+		return &SHA512_224Hasher{Salt: &p[2], Iter: &iter, Password: &p[3]}, nil
 	}
 	return nil, fmt.Errorf("Unsupported hasher %s", p[0])
 }

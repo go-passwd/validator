@@ -8,7 +8,9 @@ import (
 	"github.com/tomi77/go-passwd/passwd/util"
 )
 
-// MD5Hasher hash password in SHA512
+const _MD5MarshalerCode = "md5"
+
+// MD5Hasher hash password in MD5
 type MD5Hasher struct {
 	Salt     *string
 	Iter     *int
@@ -49,5 +51,5 @@ func (h *MD5Hasher) Check(plain string) (bool, error) {
 }
 
 func (h *MD5Hasher) String() string {
-	return fmt.Sprintf("md5:%d:%s:%s", *h.Iter, *h.Salt, *h.Password)
+	return fmt.Sprintf("%s:%d:%s:%s", _MD5MarshalerCode, *h.Iter, *h.Salt, *h.Password)
 }
