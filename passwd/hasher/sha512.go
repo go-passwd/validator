@@ -5,7 +5,7 @@ import (
 	"encoding/hex"
 	"fmt"
 
-	"github.com/tomi77/go-passwd/util"
+	"github.com/tomi77/go-passwd/passwd/util"
 )
 
 // SHA512Hasher hash password in SHA512
