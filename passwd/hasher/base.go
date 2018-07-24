@@ -43,6 +43,9 @@ func NewFromString(password string) (Hasher, error) {
 	case _SHA512_224MarshalerCode:
 		iter, _ := strconv.Atoi(p[1])
 		return &SHA512_224Hasher{Salt: &p[2], Iter: &iter, Password: &p[3]}, nil
+	case _SHA512_256MarshalerCode:
+		iter, _ := strconv.Atoi(p[1])
+		return &SHA512_256Hasher{Salt: &p[2], Iter: &iter, Password: &p[3]}, nil
 	}
 	return nil, fmt.Errorf("Unsupported hasher %s", p[0])
 }
