@@ -30,7 +30,7 @@ type Hasher interface {
 
 // NewFromString returns a new Hasher object who is based on string representation of a hasher (e.x. from database)
 func NewFromString(password string) (Hasher, error) {
-	p := strings.Split(password, ":")
+	p := strings.Split(password, "$")
 	switch p[0] {
 	case PlainHasher{}.Code():
 		return &PlainHasher{Password: &p[1]}, nil
