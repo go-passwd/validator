@@ -21,7 +21,7 @@ func (h SHA1Hasher) Code() string {
 }
 
 // Hash a password
-func (h SHA1Hasher) Hash(password string) string {
+func (h *SHA1Hasher) Hash(password string) string {
 	if h.Salt == nil {
 		salt := util.RandomString(DefaultSaltLength)
 		h.Salt = &salt
