@@ -41,3 +41,16 @@ func TestMD5Hasher_Hash(t *testing.T) {
 	g := h.Hash("password")
 	assert.Equal(t, password, g)
 }
+
+func TestMD5Hasher_Hash_Empty(t *testing.T) {
+	h := MD5Hasher{}
+	h.Hash("password")
+	assert.NotNil(t, h.Iter)
+	assert.NotNil(t, h.Salt)
+}
+
+func TestMD5Hasher_SetPassword(t *testing.T) {
+	h := MD5Hasher{}
+	h.SetPassword("password")
+	assert.NotNil(t, h.Password)
+}

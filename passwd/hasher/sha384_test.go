@@ -41,3 +41,16 @@ func TestSHA384Hasher_Hash(t *testing.T) {
 	g := h.Hash("password")
 	assert.Equal(t, password, g)
 }
+
+func TestSHA384Hasher_Hash_Empty(t *testing.T) {
+	h := SHA384Hasher{}
+	h.Hash("password")
+	assert.NotNil(t, h.Iter)
+	assert.NotNil(t, h.Salt)
+}
+
+func TestSHA384Hasher_SetPassword(t *testing.T) {
+	h := SHA384Hasher{}
+	h.SetPassword("password")
+	assert.NotNil(t, h.Password)
+}

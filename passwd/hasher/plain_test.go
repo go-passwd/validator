@@ -34,3 +34,9 @@ func TestPlainHasher_Hash(t *testing.T) {
 	g := h.Hash("password")
 	assert.Equal(t, "password", g)
 }
+
+func TestPlainHasher_SetPassword(t *testing.T) {
+	h := PlainHasher{}
+	h.SetPassword("password")
+	assert.NotNil(t, h.Password)
+}

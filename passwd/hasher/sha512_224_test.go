@@ -41,3 +41,16 @@ func TestSHA512_224Hasher_Hash(t *testing.T) {
 	g := h.Hash("password")
 	assert.Equal(t, password, g)
 }
+
+func TestSHA512_224Hasher_Hash_Empty(t *testing.T) {
+	h := SHA512_224Hasher{}
+	h.Hash("password")
+	assert.NotNil(t, h.Iter)
+	assert.NotNil(t, h.Salt)
+}
+
+func TestSHA512_224Hasher_SetPassword(t *testing.T) {
+	h := SHA512_224Hasher{}
+	h.SetPassword("password")
+	assert.NotNil(t, h.Password)
+}
