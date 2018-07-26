@@ -1,6 +1,10 @@
 package hasher
 
-import "testing"
+import (
+	"testing"
+
+	"github.com/stretchr/testify/assert"
+)
 
 func TestPlainHasher_String(t *testing.T) {
 	password := "password"
@@ -8,9 +12,7 @@ func TestPlainHasher_String(t *testing.T) {
 
 	w := "plain$password"
 	g := h.String()
-	if g != w {
-		t.Errorf("Wanted %s got %s", w, g)
-	}
+	assert.Equal(t, w, g)
 }
 
 func TestPlainHasher_Check(t *testing.T) {
@@ -18,28 +20,17 @@ func TestPlainHasher_Check(t *testing.T) {
 	h := PlainHasher{&password}
 
 	check, err := h.Check("password")
-	if err != nil {
-		t.Error(err)
-	}
-	if !check {
-		t.Error("Passwords are equal")
-	}
+	assert.Nil(t, err)
+	assert.Truef(t, check, "Passwords are equal")
 
 	check, err = h.Check("password2")
-	if err != nil {
-		t.Error(err)
-	}
-	if check {
-		t.Error("Passwords are not equal")
-	}
+	assert.Nil(t, err)
+	assert.Falsef(t, check, "Passwords are not equal")
 }
 
 func TestPlainHasher_Hash(t *testing.T) {
 	h := PlainHasher{}
 
 	g := h.Hash("password")
-	w := "password"
-	if g != w {
-		t.Errorf("Wanted %s got %s", w, g)
-	}
+	assert.Equal(t, "password", g)
 }

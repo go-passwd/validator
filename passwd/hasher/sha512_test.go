@@ -2,6 +2,8 @@ package hasher
 
 import (
 	"testing"
+
+	"github.com/stretchr/testify/assert"
 )
 
 func TestSHA512Hasher_String(t *testing.T) {
@@ -12,9 +14,7 @@ func TestSHA512Hasher_String(t *testing.T) {
 
 	w := "sha512$1$salt$password"
 	g := h.String()
-	if g != w {
-		t.Errorf("Wanted %s got %s", w, g)
-	}
+	assert.Equal(t, w, g)
 }
 
 func TestSHA512Hasher_Check(t *testing.T) {
@@ -24,20 +24,12 @@ func TestSHA512Hasher_Check(t *testing.T) {
 	h := SHA512Hasher{Salt: &salt, Iter: &iter, Password: &password}
 
 	check, err := h.Check("password")
-	if err != nil {
-		t.Error(err)
-	}
-	if !check {
-		t.Error("Passwords are equal")
-	}
+	assert.Nil(t, err)
+	assert.Truef(t, check, "Passwords are equal")
 
 	check, err = h.Check("password2")
-	if err != nil {
-		t.Error(err)
-	}
-	if check {
-		t.Error("Passwords are not equal")
-	}
+	assert.Nil(t, err)
+	assert.Falsef(t, check, "Passwords are not equal")
 }
 
 func TestSHA512Hasher_Hash(t *testing.T) {
@@ -47,7 +39,5 @@ func TestSHA512Hasher_Hash(t *testing.T) {
 	h := SHA512Hasher{Salt: &salt, Iter: &iter}
 
 	g := h.Hash("password")
-	if g != password {
-		t.Errorf("Wanted %s got %s", password, g)
-	}
+	assert.Equal(t, password, g)
 }
