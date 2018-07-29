@@ -1,7 +1,6 @@
 package util
 
 import (
-	"fmt"
 	"strings"
 	"testing"
 
@@ -25,14 +24,4 @@ func TestRandomString(t *testing.T) {
 func TestRandomString_Default(t *testing.T) {
 	s := RandomString(30)
 	assert.Len(t, s, 30)
-}
-
-func ExampleRandomString() {
-	s := RandomString(20, Digits)
-	fmt.Println(s)
-}
-
-func ExampleRandomString_default() {
-	s := RandomString(20)
-	fmt.Println(s)
 }

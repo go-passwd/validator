@@ -14,6 +14,12 @@ const (
 )
 
 // RandomString returns a random string of length n consisting of lower letters, upper letters and digitis
+//
+// Usage:
+//  util.RandomString(20, util.Digits, "@#$^&")
+//
+// Example output:
+//  1*&$^6^$#*15&$3427$2
 func RandomString(n int, baseChars ...string) string {
 	var letterBytes string
 	letterBytes = strings.Join(baseChars, "")
