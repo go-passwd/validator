@@ -43,10 +43,9 @@ func (h *SHA384Hasher) Hash(password string) string {
 }
 
 // SetPassword sets a password
-func (h *SHA384Hasher) SetPassword(plain string) Hasher {
+func (h *SHA384Hasher) SetPassword(plain string) {
 	hash := h.Hash(plain)
 	h.Password = &hash
-	return h
 }
 
 // Check if hashed password is equal stored password hash

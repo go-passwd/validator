@@ -20,10 +20,9 @@ func (h *PlainHasher) Hash(password string) string {
 }
 
 // SetPassword sets a password
-func (h *PlainHasher) SetPassword(password string) Hasher {
+func (h *PlainHasher) SetPassword(password string) {
 	_password := h.Hash(password)
 	h.Password = &_password
-	return h
 }
 
 // Check if password is equal stored password
