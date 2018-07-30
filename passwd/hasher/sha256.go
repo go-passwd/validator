@@ -5,7 +5,7 @@ import (
 	"encoding/hex"
 	"fmt"
 
-	"github.com/tomi77/go-passwd/passwd/util"
+	"github.com/tomi77/go-stringgen/randomstring"
 )
 
 // SHA256Hasher hash password in SHA256
@@ -23,7 +23,7 @@ func (h SHA256Hasher) Code() string {
 // Hash a password
 func (h *SHA256Hasher) Hash(password string) string {
 	if h.Salt == nil {
-		salt := util.RandomString(DefaultSaltLength)
+		salt := randomstring.Generate(DefaultSaltLength)
 		h.Salt = &salt
 	}
 

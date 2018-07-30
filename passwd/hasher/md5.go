@@ -5,7 +5,7 @@ import (
 	"encoding/hex"
 	"fmt"
 
-	"github.com/tomi77/go-passwd/passwd/util"
+	"github.com/tomi77/go-stringgen/randomstring"
 )
 
 // MD5Hasher hash password in MD5
@@ -23,7 +23,7 @@ func (h MD5Hasher) Code() string {
 // Hash a password
 func (h *MD5Hasher) Hash(password string) string {
 	if h.Salt == nil {
-		salt := util.RandomString(DefaultSaltLength)
+		salt := randomstring.Generate(DefaultSaltLength)
 		h.Salt = &salt
 	}
 
