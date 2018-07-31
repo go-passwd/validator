@@ -1,8 +1,13 @@
 language: go
 
-go:
-  - 1.9.x
-  - 1.10.x
+go: 1.10.x
+
+matrix:
+  include:
+    - go: 1.10.x
+      env: COVERAGE=true
+    - go: 1.9.x
+      env: COVERAGE=false
 
 install:
   - go get -t ./...
@@ -10,13 +15,7 @@ install:
   - go get github.com/mattn/goveralls
 
 script:
-  - cd passwd
-  - go test -v -covermode=count -coverprofile=coverage.out
-  - go test -v -covermode=count -coverprofile=hasher.out ./hasher/
-  - go test -v -covermode=count -coverprofile=validator.out ./validator/
-  - cat hasher.out >> coverage.out
-  - cat validator.out >> coverage.out
-  - "$HOME/gopath/bin/goveralls -coverprofile=coverage.out -service=travis-ci -repotoken $COVERALLS_TOKEN"
+  - ./travis.sh
 
 env:
   global:
