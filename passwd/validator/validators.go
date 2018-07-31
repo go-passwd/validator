@@ -2,7 +2,6 @@
 package validator
 
 import (
-	"errors"
 	"fmt"
 	"strings"
 )
@@ -20,22 +19,20 @@ func Noop() ValidateFunc {
 // MinLength returns a ValidateFunc that check if password length is not lower that "length"
 func MinLength(length int) ValidateFunc {
 	return ValidateFunc(func(password string) error {
-		if len(password) >= length {
-			return nil
-		} else {
-			return errors.New(fmt.Sprintf("Password length must be not lower that %d chars", length))
+		if len(password) < length {
+			return fmt.Errorf("Password length must be not lower that %d chars", length)
 		}
+		return nil
 	})
 }
 
 // MaxLength returns a ValidateFunc that check if password length is not greater that "length"
 func MaxLength(length int) ValidateFunc {
 	return ValidateFunc(func(password string) error {
-		if len(password) <= length {
-			return nil
-		} else {
-			return errors.New(fmt.Sprintf("Password length must be not greater that %d chars", length))
+		if len(password) > length {
+			return fmt.Errorf("Password length must be not greater that %d chars", length)
 		}
+		return nil
 	})
 }
 
@@ -51,10 +48,9 @@ func ContainsAtLeast(chars string, occurrences int) ValidateFunc {
 				}
 			}
 		}
-		if cnt >= occurrences {
-			return nil
-		} else {
-			return errors.New(fmt.Sprintf("Password must contains at least %d chars from %s", occurrences, chars))
+		if cnt < occurrences {
+			return fmt.Errorf("Password must contains at least %d chars from %s", occurrences, chars)
 		}
+		return nil
 	})
 }
