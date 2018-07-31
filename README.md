@@ -1,6 +1,7 @@
 # go-passwd
 
 [![Build Status](https://travis-ci.org/tomi77/go-passwd.svg?branch=master)](https://travis-ci.org/tomi77/go-passwd)
+[![Coverage Status](https://coveralls.io/repos/github/tomi77/go-passwd/badge.svg?branch=master)](https://coveralls.io/github/tomi77/go-passwd?branch=master)
 [![Go Report Card](https://goreportcard.com/badge/github.com/tomi77/go-passwd)](https://goreportcard.com/report/github.com/tomi77/go-passwd)
 [![GoDoc](https://godoc.org/github.com/tomi77/go-passwd/passwd?status.svg)](https://godoc.org/github.com/tomi77/go-passwd/passwd)
 
