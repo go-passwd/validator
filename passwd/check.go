@@ -6,6 +6,5 @@ func Check(plain, hashed string) (bool, error) {
 	if err != nil {
 		return false, err
 	}
-	check, err := _hasher.Check(plain)
-	return check, err
+	return _hasher.Check(plain), nil
 }

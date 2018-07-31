@@ -23,12 +23,10 @@ func TestSHA384Hasher_Check(t *testing.T) {
 	password := "f4bdac9860c0ceea69fb29efbce24addca5cf1f808925d9433b668528290d5d2c9080f32342175b5124895684db8ba4f"
 	h := SHA384Hasher{Salt: &salt, Iter: &iter, Password: &password}
 
-	check, err := h.Check("password")
-	assert.Nil(t, err)
+	check := h.Check("password")
 	assert.Truef(t, check, "Passwords are equal")
 
-	check, err = h.Check("password2")
-	assert.Nil(t, err)
+	check = h.Check("password2")
 	assert.Falsef(t, check, "Passwords are not equal")
 }
 

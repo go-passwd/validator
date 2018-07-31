@@ -19,12 +19,10 @@ func TestPlainHasher_Check(t *testing.T) {
 	password := "password"
 	h := PlainHasher{&password}
 
-	check, err := h.Check("password")
-	assert.Nil(t, err)
+	check := h.Check("password")
 	assert.Truef(t, check, "Passwords are equal")
 
-	check, err = h.Check("password2")
-	assert.Nil(t, err)
+	check = h.Check("password2")
 	assert.Falsef(t, check, "Passwords are not equal")
 }
 

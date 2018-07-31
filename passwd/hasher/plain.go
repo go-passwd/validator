@@ -26,8 +26,8 @@ func (h *PlainHasher) SetPassword(password string) {
 }
 
 // Check if password is equal stored password
-func (h *PlainHasher) Check(plain string) (bool, error) {
-	return plain == *h.Password, nil
+func (h *PlainHasher) Check(plain string) bool {
+	return plain == *h.Password
 }
 
 func (h *PlainHasher) String() string {

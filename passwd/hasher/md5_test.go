@@ -23,12 +23,10 @@ func TestMD5Hasher_Check(t *testing.T) {
 	password := "67a1e09bb1f83f5007dc119c14d663aa"
 	h := MD5Hasher{Salt: &salt, Iter: &iter, Password: &password}
 
-	check, err := h.Check("password")
-	assert.Nil(t, err)
+	check := h.Check("password")
 	assert.Truef(t, check, "Passwords are equal")
 
-	check, err = h.Check("password2")
-	assert.Nil(t, err)
+	check = h.Check("password2")
 	assert.Falsef(t, check, "Passwords are not equal")
 }
 

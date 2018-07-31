@@ -49,8 +49,8 @@ func (h *SHA512Hasher) SetPassword(plain string) {
 }
 
 // Check if hashed password is equal stored password hash
-func (h *SHA512Hasher) Check(plain string) (bool, error) {
-	return h.Hash(plain) == *h.Password, nil
+func (h *SHA512Hasher) Check(plain string) bool {
+	return h.Hash(plain) == *h.Password
 }
 
 func (h *SHA512Hasher) String() string {

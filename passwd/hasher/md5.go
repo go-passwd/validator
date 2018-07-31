@@ -49,8 +49,8 @@ func (h *MD5Hasher) SetPassword(plain string) {
 }
 
 // Check if hashed password is equal stored password hash
-func (h *MD5Hasher) Check(plain string) (bool, error) {
-	return h.Hash(plain) == *h.Password, nil
+func (h *MD5Hasher) Check(plain string) bool {
+	return h.Hash(plain) == *h.Password
 }
 
 func (h *MD5Hasher) String() string {

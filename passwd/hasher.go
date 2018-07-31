@@ -17,7 +17,7 @@ type Hasher interface {
 
 	SetPassword(string)
 
-	Check(string) (bool, error)
+	Check(string) bool
 
 	String() string
 }

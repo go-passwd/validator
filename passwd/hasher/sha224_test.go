@@ -23,12 +23,10 @@ func TestSHA224Hasher_Check(t *testing.T) {
 	password := "5fe31e9aab92219c047273219ab12eba400c9312ae74258706f144e1"
 	h := SHA224Hasher{Salt: &salt, Iter: &iter, Password: &password}
 
-	check, err := h.Check("password")
-	assert.Nil(t, err)
+	check := h.Check("password")
 	assert.Truef(t, check, "Passwords are equal")
 
-	check, err = h.Check("password2")
-	assert.Nil(t, err)
+	check = h.Check("password2")
 	assert.Falsef(t, check, "Passwords are not equal")
 }
 
