@@ -6,14 +6,15 @@ import "github.com/tomi77/go-passwd/passwd/validator"
 type Validator []validator.ValidateFunc
 
 // Validate the password
-func (v *Validator) Validate(password string) bool {
+func (v *Validator) Validate(password string) error {
 	if len(*v) == 0 {
-		return false
+		return nil
 	}
 	for _, passwordValidator := range *v {
-		if !passwordValidator(password) {
-			return false
+		err := passwordValidator(password)
+		if err != nil {
+			return err
 		}
 	}
-	return true
+	return nil
 }

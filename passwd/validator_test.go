@@ -10,7 +10,7 @@ import (
 
 func TestValidator_empty(t *testing.T) {
 	passwordValidator := Validator{}
-	assert.False(t, passwordValidator.Validate("password"))
+	assert.Nil(t, passwordValidator.Validate("password"))
 }
 
 var password = "password"
@@ -28,9 +28,9 @@ func ExampleValidator_Validate() {
 	fmt.Println(passwordValidator.Validate("pass"))
 	fmt.Println(passwordValidator.Validate("password123"))
 	// Output:
-	// true
-	// true
-	// true
-	// false
-	// false
+	// <nil>
+	// <nil>
+	// <nil>
+	// Password length must be not lower that 5 chars
+	// Password length must be not greater that 10 chars
 }
