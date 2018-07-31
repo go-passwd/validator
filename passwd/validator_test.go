@@ -10,7 +10,8 @@ import (
 
 func TestValidator_empty(t *testing.T) {
 	passwordValidator := Validator{}
-	assert.Nil(t, passwordValidator.Validate("password"))
+	err := passwordValidator.Validate("password")
+	assert.NotNil(t, err)
 }
 
 var password = "password"
