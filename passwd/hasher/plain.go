@@ -4,7 +4,7 @@ import (
 	"fmt"
 )
 
-// PlainHasher stored password in plain text
+// PlainHasher stored password as plain text
 type PlainHasher struct {
 	Password *string
 }
