@@ -16,9 +16,18 @@ func TestValidator_empty(t *testing.T) {
 
 var password = "password"
 
-func ExampleValidator() {
-	passwordValidator := Validator{validator.MinLength(5), validator.MaxLength(10)}
-	passwordValidator.Validate(password)
+func ExampleNewValidator() {
+	NewValidator(validator.MinLength(5), validator.MaxLength(10))
+}
+
+func TestNewValidator(t *testing.T) {
+	passwordValidator := NewValidator(validator.MinLength(5), validator.MaxLength(10))
+	assert.Len(t, *passwordValidator, 2)
+	assert.Nil(t, passwordValidator.Validate("password"))
+	assert.Nil(t, passwordValidator.Validate("pass1"))
+	assert.Nil(t, passwordValidator.Validate("password12"))
+	assert.Error(t, passwordValidator.Validate("pass"))
+	assert.Error(t, passwordValidator.Validate("password123"))
 }
 
 func ExampleValidator_Validate() {

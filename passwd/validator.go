@@ -9,6 +9,13 @@ import (
 // Validator represents set of password validators
 type Validator []validator.ValidateFunc
 
+// NewValidator return new instance of Validator
+func NewValidator(vfunc ...validator.ValidateFunc) *Validator {
+	v := Validator{}
+	v = append(v, vfunc...)
+	return &v
+}
+
 // Validate the password
 func (v *Validator) Validate(password string) error {
 	if len(*v) == 0 {
