@@ -10,8 +10,8 @@ import (
 
 var strPassword = "plain$password"
 
-func ExampleNewFromString() {
-	h, err := NewFromString(strPassword)
+func ExampleNewHasherFromString() {
+	h, err := NewHasherFromString(strPassword)
 	if err != nil {
 		fmt.Println(err.Error())
 	}
@@ -21,61 +21,61 @@ func ExampleNewFromString() {
 }
 
 func TestNewFromString_Plain(t *testing.T) {
-	g, e := NewFromString("plain$pass")
+	g, e := NewHasherFromString("plain$pass")
 	assert.Nil(t, e)
 	assert.IsType(t, &hasher.PlainHasher{}, g)
 }
 
 func TestNewFromString_MD5(t *testing.T) {
-	g, e := NewFromString("md5$1$salt$pass")
+	g, e := NewHasherFromString("md5$1$salt$pass")
 	assert.Nil(t, e)
 	assert.IsType(t, &hasher.MD5Hasher{}, g)
 }
 
 func TestNewFromString_SHA1(t *testing.T) {
-	g, e := NewFromString("sha1$1$salt$pass")
+	g, e := NewHasherFromString("sha1$1$salt$pass")
 	assert.Nil(t, e)
 	assert.IsType(t, &hasher.SHA1Hasher{}, g)
 }
 
 func TestNewFromString_SHA224(t *testing.T) {
-	g, e := NewFromString("sha224$1$salt$pass")
+	g, e := NewHasherFromString("sha224$1$salt$pass")
 	assert.Nil(t, e)
 	assert.IsType(t, &hasher.SHA224Hasher{}, g)
 }
 
 func TestNewFromString_SHA256(t *testing.T) {
-	g, e := NewFromString("sha256$1$salt$pass")
+	g, e := NewHasherFromString("sha256$1$salt$pass")
 	assert.Nil(t, e)
 	assert.IsType(t, &hasher.SHA256Hasher{}, g)
 }
 
 func TestNewFromString_SHA384(t *testing.T) {
-	g, e := NewFromString("sha384$1$salt$pass")
+	g, e := NewHasherFromString("sha384$1$salt$pass")
 	assert.Nil(t, e)
 	assert.IsType(t, &hasher.SHA384Hasher{}, g)
 }
 
 func TestNewFromString_SHA512(t *testing.T) {
-	g, e := NewFromString("sha512$1$salt$pass")
+	g, e := NewHasherFromString("sha512$1$salt$pass")
 	assert.Nil(t, e)
 	assert.IsType(t, &hasher.SHA512Hasher{}, g)
 }
 
 func TestNewFromString_SHA512_224(t *testing.T) {
-	g, e := NewFromString("sha512_224$1$salt$pass")
+	g, e := NewHasherFromString("sha512_224$1$salt$pass")
 	assert.Nil(t, e)
 	assert.IsType(t, &hasher.SHA512_224Hasher{}, g)
 }
 
 func TestNewFromString_SHA512_256(t *testing.T) {
-	g, e := NewFromString("sha512_256$1$salt$pass")
+	g, e := NewHasherFromString("sha512_256$1$salt$pass")
 	assert.Nil(t, e)
 	assert.IsType(t, &hasher.SHA512_256Hasher{}, g)
 }
 
 func TestNewFromString_bad_hasher(t *testing.T) {
-	g, e := NewFromString("qaz123$1")
+	g, e := NewHasherFromString("qaz123$1")
 	assert.NotNil(t, e)
 	assert.Nil(t, g)
 }
