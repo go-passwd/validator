@@ -7,8 +7,8 @@ import (
 // Validator represents set of password validators
 type Validator []ValidateFunc
 
-// NewValidator return new instance of Validator
-func NewValidator(vfunc ...ValidateFunc) *Validator {
+// New return new instance of Validator
+func New(vfunc ...ValidateFunc) *Validator {
 	v := Validator{}
 	v = append(v, vfunc...)
 	return &v

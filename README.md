@@ -16,7 +16,7 @@ go get -u github.com/go-passwd/validator
 ~~~go
 import "github.com/go-passwd/validator"
 
-passwordValidator := validator.NewValidator(validator.MinLength(5), validator.MaxLength(10))
+passwordValidator := validator.New(validator.MinLength(5), validator.MaxLength(10))
 err := passwordValidator.Validate(form.Password)
 if err != nil {
   panic(err)
@@ -30,7 +30,7 @@ if err != nil {
 Check if password length is not lower that defined length.
 
 ~~~go
-passwordValidator := validator.NewValidator(validator.MinLength(5))
+passwordValidator := validator.New(validator.MinLength(5))
 ~~~
 
 ### MaxLength
@@ -38,7 +38,7 @@ passwordValidator := validator.NewValidator(validator.MinLength(5))
 Check if password length is not greater that defined length.
 
 ~~~go
-passwordValidator := validator.NewValidator(validator.MaxLength(10))
+passwordValidator := validator.New(validator.MaxLength(10))
 ~~~
 
 ### ContainsAtLeast
@@ -46,5 +46,5 @@ passwordValidator := validator.NewValidator(validator.MaxLength(10))
 Count occurrences of a chars and compares it with required value.
 
 ~~~go
-passwordValidator := validator.NewValidator(validator.ContainsAtLeast(5, "abcdefghijklmnopqrstuvwxyz")
+passwordValidator := validator.New(validator.ContainsAtLeast(5, "abcdefghijklmnopqrstuvwxyz")
 ~~~

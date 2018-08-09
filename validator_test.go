@@ -15,12 +15,12 @@ func TestValidator_empty(t *testing.T) {
 
 var password = "password"
 
-func ExampleNewValidator() {
-	NewValidator(MinLength(5), MaxLength(10))
+func ExampleNew() {
+	New(MinLength(5), MaxLength(10))
 }
 
 func TestNewValidator(t *testing.T) {
-	passwordValidator := NewValidator(MinLength(5), MaxLength(10))
+	passwordValidator := New(MinLength(5), MaxLength(10))
 	assert.Len(t, *passwordValidator, 2)
 	assert.Nil(t, passwordValidator.Validate("password"))
 	assert.Nil(t, passwordValidator.Validate("pass1"))
