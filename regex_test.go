@@ -3,6 +3,9 @@ package validator
 import (
 	"errors"
 	"fmt"
+	"testing"
+
+	"github.com/stretchr/testify/assert"
 )
 
 func ExampleRegex() {
@@ -20,4 +23,10 @@ func ExampleRegex_customError() {
 	fmt.Println(passwordValidator("password"))
 	// Output:
 	// custom error message
+}
+
+func TestRegex_badRegexp(t *testing.T) {
+	passwordValidator := Regex("^\\q+$", nil)
+	err := passwordValidator("password")
+	assert.NotNil(t, err)
 }
