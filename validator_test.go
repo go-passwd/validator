@@ -16,11 +16,11 @@ func TestValidator_empty(t *testing.T) {
 var password = "password"
 
 func ExampleNew() {
-	New(MinLength(5), MaxLength(10))
+	New(MinLength(5, nil), MaxLength(10, nil))
 }
 
 func TestNewValidator(t *testing.T) {
-	passwordValidator := New(MinLength(5), MaxLength(10))
+	passwordValidator := New(MinLength(5, nil), MaxLength(10, nil))
 	assert.Len(t, *passwordValidator, 2)
 	assert.Nil(t, passwordValidator.Validate("password"))
 	assert.Nil(t, passwordValidator.Validate("pass1"))
@@ -30,7 +30,7 @@ func TestNewValidator(t *testing.T) {
 }
 
 func ExampleValidator_Validate() {
-	passwordValidator := Validator{MinLength(5), MaxLength(10)}
+	passwordValidator := Validator{MinLength(5, nil), MaxLength(10, nil)}
 	fmt.Println(passwordValidator.Validate("password"))
 	fmt.Println(passwordValidator.Validate("pass1"))
 	fmt.Println(passwordValidator.Validate("password12"))

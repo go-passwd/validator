@@ -11,11 +11,14 @@ var commonPasswords = []string{"123456", "123456789", "qwerty", "password", "111
 //
 // The password is rejected if it occurs in a provided list created by Mark Burnett:
 // https://xato.net/passwords/more-top-worst-passwords/
-func CommonPassword() ValidateFunc {
+func CommonPassword(customError error) ValidateFunc {
 	return ValidateFunc(func(password string) error {
 		password = strings.ToLower(password)
 		for _, commonPassword := range commonPasswords {
 			if commonPassword == password {
+				if customError != nil {
+					return customError
+				}
 				return fmt.Errorf("Password can't be a commonly used password")
 			}
 		}

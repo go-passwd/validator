@@ -16,7 +16,19 @@ go get -u github.com/go-passwd/validator
 ~~~go
 import "github.com/go-passwd/validator"
 
-passwordValidator := validator.New(validator.MinLength(5), validator.MaxLength(10))
+passwordValidator := validator.New(validator.MinLength(5, nil), validator.MaxLength(10, nil))
+err := passwordValidator.Validate(form.Password)
+if err != nil {
+  panic(err)
+}
+~~~
+
+You can pass to every validator functions ``customError`` parameter witch will be returned on error instead of default error.
+
+~~~go
+import "github.com/go-passwd/validator"
+
+passwordValidator := validator.New(validator.MinLength(5, errors.New("too short")), validator.MaxLength(10, errors.New("too long")))
 err := passwordValidator.Validate(form.Password)
 if err != nil {
   panic(err)
@@ -30,7 +42,7 @@ if err != nil {
 Check if password length is not lower that defined length.
 
 ~~~go
-passwordValidator := validator.New(validator.MinLength(5))
+passwordValidator := validator.New(validator.MinLength(5, nil))
 ~~~
 
 ### MaxLength
@@ -38,7 +50,7 @@ passwordValidator := validator.New(validator.MinLength(5))
 Check if password length is not greater that defined length.
 
 ~~~go
-passwordValidator := validator.New(validator.MaxLength(10))
+passwordValidator := validator.New(validator.MaxLength(10, nil))
 ~~~
 
 ### ContainsAtLeast
@@ -46,7 +58,7 @@ passwordValidator := validator.New(validator.MaxLength(10))
 Count occurrences of a chars and compares it with required value.
 
 ~~~go
-passwordValidator := validator.New(validator.ContainsAtLeast(5, "abcdefghijklmnopqrstuvwxyz"))
+passwordValidator := validator.New(validator.ContainsAtLeast(5, "abcdefghijklmnopqrstuvwxyz", nil))
 ~~~
 
 ### CommonPassword
@@ -56,7 +68,7 @@ Check if password is a common password.
 Common password list is based on list created by Mark Burnett: https://xato.net/passwords/more-top-worst-passwords/
 
 ~~~go
-passwordValidator := validator.New(validator.CommonPassword())
+passwordValidator := validator.New(validator.CommonPassword(nil))
 ~~~
 
 ### Regex
@@ -64,5 +76,5 @@ passwordValidator := validator.New(validator.CommonPassword())
 Check if password match regexp pattern.
 
 ~~~go
-passwordValidator := validator.New(validator.Regex("^\\w+$"))
+passwordValidator := validator.New(validator.Regex("^\\w+$", nil))
 ~~~
