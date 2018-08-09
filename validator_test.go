@@ -1,11 +1,10 @@
-package passwd
+package validator
 
 import (
 	"fmt"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
-	"github.com/tomi77/go-passwd/passwd/validator"
 )
 
 func TestValidator_empty(t *testing.T) {
@@ -17,11 +16,11 @@ func TestValidator_empty(t *testing.T) {
 var password = "password"
 
 func ExampleNewValidator() {
-	NewValidator(validator.MinLength(5), validator.MaxLength(10))
+	NewValidator(MinLength(5), MaxLength(10))
 }
 
 func TestNewValidator(t *testing.T) {
-	passwordValidator := NewValidator(validator.MinLength(5), validator.MaxLength(10))
+	passwordValidator := NewValidator(MinLength(5), MaxLength(10))
 	assert.Len(t, *passwordValidator, 2)
 	assert.Nil(t, passwordValidator.Validate("password"))
 	assert.Nil(t, passwordValidator.Validate("pass1"))
@@ -31,7 +30,7 @@ func TestNewValidator(t *testing.T) {
 }
 
 func ExampleValidator_Validate() {
-	passwordValidator := Validator{validator.MinLength(5), validator.MaxLength(10)}
+	passwordValidator := Validator{MinLength(5), MaxLength(10)}
 	fmt.Println(passwordValidator.Validate("password"))
 	fmt.Println(passwordValidator.Validate("pass1"))
 	fmt.Println(passwordValidator.Validate("password12"))

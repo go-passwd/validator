@@ -1,16 +1,14 @@
-package passwd
+package validator
 
 import (
 	"errors"
-
-	"github.com/tomi77/go-passwd/passwd/validator"
 )
 
 // Validator represents set of password validators
-type Validator []validator.ValidateFunc
+type Validator []ValidateFunc
 
 // NewValidator return new instance of Validator
-func NewValidator(vfunc ...validator.ValidateFunc) *Validator {
+func NewValidator(vfunc ...ValidateFunc) *Validator {
 	v := Validator{}
 	v = append(v, vfunc...)
 	return &v
