@@ -46,7 +46,7 @@ passwordValidator := validator.New(validator.MaxLength(10))
 Count occurrences of a chars and compares it with required value.
 
 ~~~go
-passwordValidator := validator.New(validator.ContainsAtLeast(5, "abcdefghijklmnopqrstuvwxyz")
+passwordValidator := validator.New(validator.ContainsAtLeast(5, "abcdefghijklmnopqrstuvwxyz"))
 ~~~
 
 ### CommonPassword
@@ -56,5 +56,13 @@ Check if password is a common password.
 Common password list is based on list created by Mark Burnett: https://xato.net/passwords/more-top-worst-passwords/
 
 ~~~go
-passwordValidator := validator.New(validator.CommonPassword()
+passwordValidator := validator.New(validator.CommonPassword())
+~~~
+
+### Regex
+
+Check if password match regexp pattern.
+
+~~~go
+passwordValidator := validator.New(validator.Regex("^\\w+$"))
 ~~~
