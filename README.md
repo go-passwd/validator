@@ -37,6 +37,14 @@ if err != nil {
 
 ## Validators
 
+### Noop
+
+Always return custom error.
+
+~~~go
+passwordValidator := validator.New(validator.Noop(nil))
+~~~
+
 ### MinLength
 
 Check if password length is not lower that defined length.
