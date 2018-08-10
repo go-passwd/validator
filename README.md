@@ -86,3 +86,13 @@ Check if password match regexp pattern.
 ~~~go
 passwordValidator := validator.New(validator.Regex("^\\w+$", nil))
 ~~~
+
+### Similarity
+
+Check if password is sufficiently different from the attributes.
+
+Attributes can be: user login, email, first name, last name, …
+
+~~~go
+passwordValidator := validator.New(validator.Similarity([]string{"username", "username@example.com"}], nil, nil))
+~~~
