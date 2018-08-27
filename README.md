@@ -94,5 +94,13 @@ Check if password is sufficiently different from the attributes.
 Attributes can be: user login, email, first name, last name, …
 
 ~~~go
-passwordValidator := validator.New(validator.Similarity([]string{"username", "username@example.com"}], nil, nil))
+passwordValidator := validator.New(validator.Similarity([]string{"username", "username@example.com"}, nil, nil))
+~~~
+
+### StartsWith
+
+Check if password starts with one of letter.
+
+~~~go
+passwordValidator := validator.New(validator.StartsWith("abcdefghijklmnopqrstuvwxyz", nil))
 ~~~
