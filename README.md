@@ -37,28 +37,14 @@ if err != nil {
 
 ## Validators
 
-### Noop
+### CommonPassword
 
-Always return custom error.
+Check if password is a common password.
 
-~~~go
-passwordValidator := validator.New(validator.Noop(nil))
-~~~
-
-### MinLength
-
-Check if password length is not lower that defined length.
+Common password list is based on list created by Mark Burnett: https://xato.net/passwords/more-top-worst-passwords/
 
 ~~~go
-passwordValidator := validator.New(validator.MinLength(5, nil))
-~~~
-
-### MaxLength
-
-Check if password length is not greater that defined length.
-
-~~~go
-passwordValidator := validator.New(validator.MaxLength(10, nil))
+passwordValidator := validator.New(validator.CommonPassword(nil))
 ~~~
 
 ### ContainsAtLeast
@@ -69,14 +55,28 @@ Count occurrences of a chars and compares it with required value.
 passwordValidator := validator.New(validator.ContainsAtLeast(5, "abcdefghijklmnopqrstuvwxyz", nil))
 ~~~
 
-### CommonPassword
+### MaxLength
 
-Check if password is a common password.
-
-Common password list is based on list created by Mark Burnett: https://xato.net/passwords/more-top-worst-passwords/
+Check if password length is not greater that defined length.
 
 ~~~go
-passwordValidator := validator.New(validator.CommonPassword(nil))
+passwordValidator := validator.New(validator.MaxLength(10, nil))
+~~~
+
+### MinLength
+
+Check if password length is not lower that defined length.
+
+~~~go
+passwordValidator := validator.New(validator.MinLength(5, nil))
+~~~
+
+### Noop
+
+Always return custom error.
+
+~~~go
+passwordValidator := validator.New(validator.Noop(nil))
 ~~~
 
 ### Regex
