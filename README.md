@@ -55,6 +55,14 @@ Count occurrences of a chars and compares it with required value.
 passwordValidator := validator.New(validator.ContainsAtLeast(5, "abcdefghijklmnopqrstuvwxyz", nil))
 ~~~
 
+### ContainsOnly
+
+Check if password contains only selected chars.
+
+~~~go
+passwordValidator := validator.New(validator.ContainsOnly("abcdefghijklmnopqrstuvwxyz", nil))
+~~~
+
 ### MaxLength
 
 Check if password length is not greater that defined length.
