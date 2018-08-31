@@ -112,3 +112,11 @@ Check if password starts with one of letter.
 ~~~go
 passwordValidator := validator.New(validator.StartsWith("abcdefghijklmnopqrstuvwxyz", nil))
 ~~~
+
+### Unique
+
+Check if password contains only unique chars.
+
+~~~go
+passwordValidator := validator.New(validator.Unique(nil))
+~~~
