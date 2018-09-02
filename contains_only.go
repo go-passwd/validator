@@ -1,7 +1,6 @@
 package validator
 
 import (
-	"bytes"
 	"fmt"
 	"strings"
 )
@@ -9,10 +8,10 @@ import (
 // ContainsOnly returns a ValidateFunc that check if password contains only selected chars
 func ContainsOnly(chars string, customError error) ValidateFunc {
 	return ValidateFunc(func(password string) error {
-		bChars := []byte(chars)
-		for _, char := range strings.Split(password, "") {
-			bChar := []byte(char)[0]
-			idx := bytes.IndexByte(bChars, bChar)
+		for _, char := range []rune(password) {
+			idx := strings.IndexFunc(chars, func(r rune) bool {
+				return r == char
+			})
 			if idx == -1 {
 				if customError != nil {
 					return customError
