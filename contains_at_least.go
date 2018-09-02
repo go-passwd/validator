@@ -9,13 +9,8 @@ import (
 func ContainsAtLeast(chars string, occurrences int, customError error) ValidateFunc {
 	return ValidateFunc(func(password string) error {
 		cnt := 0
-		aPassword := strings.Split(password, "")
 		for _, char := range strings.Split(chars, "") {
-			for _, pChar := range aPassword {
-				if char == pChar {
-					cnt++
-				}
-			}
+			cnt += strings.Count(password, char)
 		}
 		if cnt < occurrences {
 			if customError != nil {
