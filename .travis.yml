@@ -4,10 +4,7 @@ go: 1.10.x
 
 matrix:
   include:
-    - go: 1.10.x
-      env: COVERAGE=true
     - go: 1.9.x
-      env: COVERAGE=false
 
 install:
   - go get -t ./...
