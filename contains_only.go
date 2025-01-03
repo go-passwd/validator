@@ -5,10 +5,10 @@ import (
 	"strings"
 )
 
-// ContainsOnly returns a ValidateFunc that check if password contains only selected chars
+// ContainsOnly returns a ValidateFunc that check if password contains only selected chars.
 func ContainsOnly(chars string, customError error) ValidateFunc {
-	return ValidateFunc(func(password string) error {
-		for _, char := range []rune(password) {
+	return func(password string) error {
+		for _, char := range password {
 			idx := strings.IndexFunc(chars, func(r rune) bool {
 				return r == char
 			})
@@ -20,5 +20,5 @@ func ContainsOnly(chars string, customError error) ValidateFunc {
 			}
 		}
 		return nil
-	})
+	}
 }

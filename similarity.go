@@ -7,7 +7,7 @@ import (
 
 // Similarity returns ValidateFunc that validate whether the password is sufficiently different from the attributes
 //
-// Attributes can be: user login, email, first name, last name, …
+// Attributes can be: user login, email, first name, last name, ….
 func Similarity(attributes []string, maxSimilarity *float64, customError error) ValidateFunc {
 	if maxSimilarity == nil {
 		maxSimilarity = new(float64)
@@ -15,7 +15,7 @@ func Similarity(attributes []string, maxSimilarity *float64, customError error) 
 	}
 	return ValidateFunc(func(password string) error {
 		for idx := range attributes {
-			if ratio(password, attributes[idx]) > *maxSimilarity {
+			if Ratio(password, attributes[idx]) > *maxSimilarity {
 				if customError != nil {
 					return customError
 				}
@@ -26,22 +26,20 @@ func Similarity(attributes []string, maxSimilarity *float64, customError error) 
 	})
 }
 
-// Return a measure of the sequences' similarity (float in [0,1]).
+// Ratio returns a measure of the sequences' similarity (float in [0,1]).
 //
 // Where T is the total number of elements in both sequences, and M is the number of matches, this is 2.0*M / T.
 // Note that this is 1 if the sequences are identical, and 0 if they have nothing in common.
-func ratio(a, b string) float64 {
-	t := float64(len(a) + len(b))
-	m := 0.0
-	sa := strings.Split(a, "")
-	sb := strings.Split(b, "")
-	for idx := range sb {
-		aidx := strings.Index(a, sb[idx])
-		if aidx > -1 {
-			sa = append(sa[:aidx], sa[aidx+1:]...)
-			a = strings.Join(sa, "")
-			m = m + 1.0
+func Ratio(pass, attr string) float64 {
+	totalChars := float64(len(pass) + len(attr))
+	matches := 0.0
+
+	for _, char := range attr {
+		if strings.Contains(pass, string(char)) {
+			pass = strings.Replace(pass, string(char), "", 1)
+			matches++
 		}
 	}
-	return 2.0 * m / t
+
+	return 2.0 * matches / totalChars
 }

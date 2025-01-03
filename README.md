@@ -1,9 +1,10 @@
 # Password validator library for Go
 
-[![Build Status](https://travis-ci.org/go-passwd/validator.svg?branch=master)](https://travis-ci.org/go-passwd/validator)
-[![Coverage Status](https://coveralls.io/repos/github/go-passwd/validator/badge.svg?branch=master)](https://coveralls.io/github/go-passwd/validator?branch=master)
-[![Go Report Card](https://goreportcard.com/badge/github.com/go-passwd/validator)](https://goreportcard.com/report/github.com/go-passwd/validator)
-[![GoDoc](https://godoc.org/github.com/go-passwd/validator?status.svg)](https://godoc.org/github.com/go-passwd/validator)
+[![Latest tag](https://img.shields.io/github/tag/go-passwd/validator.svg)](https://github.com/go-passwd/validator/tags)
+[![GoDoc](https://godoc.org/github.com/go-passwd/validator?status.svg)](https://pkg.go.dev/github.com/go-passwd/validator)
+[![Tests status](https://github.com/go-passwd/validator/actions/workflows/test.yml/badge.svg)](https://github.com/go-passwd/validator/actions/workflows/test.yml)
+[![Go report](https://goreportcard.com/badge/github.com/go-passwd/validator)](https://goreportcard.com/report/github.com/go-passwd/validator)
+[![License](https://img.shields.io/github/license/go-passwd/validator)](./LICENSE)
 
 ## Installation
 

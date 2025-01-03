@@ -1,12 +1,14 @@
-package validator
+package validator_test
 
 import (
 	"errors"
 	"fmt"
+
+	"github.com/go-passwd/validator"
 )
 
 func ExampleMaxLength() {
-	passwordValidator := MaxLength(5, nil)
+	passwordValidator := validator.MaxLength(5, nil)
 	fmt.Println(passwordValidator("password"))
 	fmt.Println(passwordValidator("pass"))
 	fmt.Println(passwordValidator("passw"))
@@ -18,7 +20,7 @@ func ExampleMaxLength() {
 
 func ExampleMaxLength_customError() {
 	err := errors.New("custom error message")
-	passwordValidator := MaxLength(5, err)
+	passwordValidator := validator.MaxLength(5, err)
 	fmt.Println(passwordValidator("password"))
 	// Output:
 	// custom error message

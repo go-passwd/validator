@@ -1,0 +1,177 @@
+# options for analysis running
+linters-settings:
+  dogsled:
+    # checks assignments with too many blank identifiers
+    max-blank-identifiers: 2
+
+  errcheck:
+    # report about not checking of errors in type assertions: `a := b.(MyStruct)`;
+    check-type-assertions: true
+    # report about assignment of errors to blank identifier: `num, _ := strconv.Atoi(numStr)`;
+    check-blank: true
+
+  exhaustive:
+    # Presence of "default" case in switch statements satisfies exhaustiveness,
+    # even if all enum members are not listed.
+    default-signifies-exhaustive: true
+
+  gci:
+    # Section configuration to compare against.
+    sections:
+      - standard # Standard section: captures all standard packages.
+      - default # Default section: contains all imports that could not be matched to another section type.
+      - prefix(github.com/go-passwd/validator) # Custom section: groups all imports with the specified Prefix.
+      - blank # Blank section: contains all blank imports. This section is not present unless explicitly enabled.
+      - dot # Dot section: contains all dot imports. This section is not present unless explicitly enabled.
+    # Skip generated files.
+    skip-generated: true
+    # Enable custom order of sections.
+    custom-order: true
+
+  gofmt:
+    # simplify code: gofmt with `-s` option
+    simplify: true
+
+  goimports:
+    # put imports beginning with prefix after 3rd-party packages;
+    local-prefixes: github.com/go-passwd/validator
+
+  prealloc:
+    # Report pre-allocation suggestions only on simple loops that have no returns/breaks/continues/goto's in them.
+    simple: true
+    # Report pre-allocation suggestions on range loops
+    range-loops: true
+    # Report pre-allocation suggestions on for loops
+    for-loops: true
+
+  revive:
+    # When set to false, ignores files with "GENERATED" header, similar to golint.
+    # See https://github.com/mgechev/revive#available-rules for details.
+    ignore-generated-header: true
+    severity: warning
+
+  stylecheck:
+    # STxxxx checks in https://staticcheck.io/docs/configuration/options/#checks
+    checks: [ "all", "-ST1005" ]
+    # https://staticcheck.io/docs/configuration/options/#dot_import_whitelist
+    dot-import-whitelist: [ ]
+    # https://staticcheck.io/docs/configuration/options/#initialisms
+    initialisms: [ ]
+    # https://staticcheck.io/docs/configuration/options/#http_status_code_whitelist
+    http-status-code-whitelist: [ "200", "400", "404", "500" ]
+
+  testifylint:
+    # Enable all checkers (https://github.com/Antonboom/testifylint#checkers).
+    enable-all: true
+
+linters:
+  disable-all: true
+  enable:
+    - asasalint
+    - asciicheck
+    - bidichk
+    - bodyclose
+    - canonicalheader
+    - containedctx
+    - contextcheck
+    - decorder
+    - dogsled
+    - dupword
+    - durationcheck
+    - errcheck
+    - errchkjson
+    - errname
+    - errorlint
+    - exhaustive
+    - fatcontext
+    - forbidigo
+    - forcetypeassert
+    - gci
+    - ginkgolinter
+    - gocheckcompilerdirectives
+    - gochecknoinits
+    - gochecksumtype
+    - goconst
+    - gocritic
+    - godot
+    - gofmt
+    - gofumpt
+    - goheader
+    - goimports
+    - gomoddirectives
+    - gomodguard
+    - goprintffuncname
+    - gosec
+    - gosimple
+    - gosmopolitan
+    - govet
+    - grouper
+    - importas
+    - inamedparam
+    - ineffassign
+    - loggercheck
+    - maintidx
+    - makezero
+    - mirror
+    - musttag
+    - nakedret
+    - nolintlint
+    - nonamedreturns
+    - nosprintfhostport
+    - prealloc
+    - predeclared
+    - promlinter
+    - protogetter
+    - reassign
+    - revive
+    - rowserrcheck
+    - sloglint
+    - spancheck
+    - sqlclosecheck
+    - staticcheck
+    - stylecheck
+    - tagalign
+    - tenv
+    - testableexamples
+    - testifylint
+    - testpackage
+    - thelper
+    - tparallel
+    - unconvert
+    - unparam
+    - unused
+    - usestdlibvars
+    - wastedassign
+    - whitespace
+    - zerologlint
+
+issues:
+  # Show only new issues: if there are unstaged changes or untracked files,
+  # only those changes are analyzed, else only changes in HEAD~ are analyzed.
+  # It's a super-useful option for integration of golangci-lint into existing large codebase.
+  # It's not practical to fix all existing issues at the moment of integration:
+  # much better don't allow issues in new code.
+  new: false
+
+# output configuration options
+output:
+  # The formats used to render issues.
+  # Format: `colored-line-number`, `line-number`, `json`, `colored-tab`, `tab`, `checkstyle`, `code-climate`, `junit-xml`, `github-actions`, `teamcity`
+  # Output path can be either `stdout`, `stderr` or path to the file to write to.
+  #
+  # For the CLI flag (`--out-format`), multiple formats can be specified by separating them by comma.
+  # The output can be specified for each of them by separating format name and path by colon symbol.
+  # Example: "--out-format=checkstyle:report.xml,json:stdout,colored-line-number"
+  # The CLI flag (`--out-format`) override the configuration file.
+  #
+  # Default:
+  #   formats:
+  #     - format: colored-line-number
+  #       path: stdo
+  formats: [ { format: colored-line-number } ]
+
+  # Print lines of code with issue.
+  print-issued-lines: false
+
+  # Print linter name in the end of issue text.
+  print-linter-name: true

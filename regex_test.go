@@ -1,4 +1,4 @@
-package validator
+package validator_test
 
 import (
 	"errors"
@@ -6,10 +6,12 @@ import (
 	"testing"
 
 	"github.com/stretchr/testify/assert"
+
+	"github.com/go-passwd/validator"
 )
 
 func ExampleRegex() {
-	passwordValidator := Regex("^\\w+$", nil)
+	passwordValidator := validator.Regex("^\\w+$", nil)
 	fmt.Println(passwordValidator("password"))
 	fmt.Println(passwordValidator("pa$$w0rd"))
 	// Output:
@@ -19,14 +21,14 @@ func ExampleRegex() {
 
 func ExampleRegex_customError() {
 	err := errors.New("custom error message")
-	passwordValidator := Regex("^\\w+$", err)
+	passwordValidator := validator.Regex("^\\w+$", err)
 	fmt.Println(passwordValidator("password"))
 	// Output:
 	// custom error message
 }
 
 func TestRegex_badRegexp(t *testing.T) {
-	passwordValidator := Regex("^\\q+$", nil)
+	passwordValidator := validator.Regex("^\\q+$", nil)
 	err := passwordValidator("password")
-	assert.NotNil(t, err)
+	assert.Error(t, err)
 }

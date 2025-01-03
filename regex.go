@@ -5,7 +5,7 @@ import (
 	"regexp"
 )
 
-// Regex returns ValidateFunc that check if password match regexp pattern
+// Regex returns ValidateFunc that check if password match regexp pattern.
 func Regex(pattern string, customError error) ValidateFunc {
 	return ValidateFunc(func(password string) error {
 		matched, err := regexp.MatchString(pattern, password)

@@ -1,12 +1,14 @@
-package validator
+package validator_test
 
 import (
 	"errors"
 	"fmt"
+
+	"github.com/go-passwd/validator"
 )
 
 func ExampleContainsAtLeast() {
-	passwordValidator := ContainsAtLeast("abcdefghijklmnopqrstuvwxyz", 4, nil)
+	passwordValidator := validator.ContainsAtLeast("abcdefghijklmnopqrstuvwxyz", 4, nil)
 	fmt.Println(passwordValidator("password"))
 	fmt.Println(passwordValidator("PASSWORD"))
 	fmt.Println(passwordValidator("passWORD"))
@@ -18,7 +20,7 @@ func ExampleContainsAtLeast() {
 
 func ExampleContainsAtLeast_customError() {
 	err := errors.New("custom error message")
-	passwordValidator := ContainsAtLeast("abcdefghijklmnopqrstuvwxyz", 4, err)
+	passwordValidator := validator.ContainsAtLeast("abcdefghijklmnopqrstuvwxyz", 4, err)
 	fmt.Println(passwordValidator("PASSWORD"))
 	// Output:
 	// custom error message

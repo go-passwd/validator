@@ -1,36 +1,32 @@
-package validator
+package validator_test
 
 import (
 	"fmt"
 	"testing"
 
-	"github.com/stretchr/testify/assert"
+	"github.com/stretchr/testify/require"
+
+	"github.com/go-passwd/validator"
 )
 
 func TestValidator_empty(t *testing.T) {
-	passwordValidator := Validator{}
+	passwordValidator := validator.Validator{}
 	err := passwordValidator.Validate("password")
-	assert.NotNil(t, err)
-}
-
-var password = "password"
-
-func ExampleNew() {
-	New(MinLength(5, nil), MaxLength(10, nil))
+	require.Error(t, err)
 }
 
 func TestNewValidator(t *testing.T) {
-	passwordValidator := New(MinLength(5, nil), MaxLength(10, nil))
-	assert.Len(t, *passwordValidator, 2)
-	assert.Nil(t, passwordValidator.Validate("password"))
-	assert.Nil(t, passwordValidator.Validate("pass1"))
-	assert.Nil(t, passwordValidator.Validate("password12"))
-	assert.Error(t, passwordValidator.Validate("pass"))
-	assert.Error(t, passwordValidator.Validate("password123"))
+	passwordValidator := validator.New(validator.MinLength(5, nil), validator.MaxLength(10, nil))
+	require.Len(t, *passwordValidator, 2)
+	require.NoError(t, passwordValidator.Validate("password"))
+	require.NoError(t, passwordValidator.Validate("pass1"))
+	require.NoError(t, passwordValidator.Validate("password12"))
+	require.Error(t, passwordValidator.Validate("pass"))
+	require.Error(t, passwordValidator.Validate("password123"))
 }
 
 func ExampleValidator_Validate() {
-	passwordValidator := Validator{MinLength(5, nil), MaxLength(10, nil)}
+	passwordValidator := validator.Validator{validator.MinLength(5, nil), validator.MaxLength(10, nil)}
 	fmt.Println(passwordValidator.Validate("password"))
 	fmt.Println(passwordValidator.Validate("pass1"))
 	fmt.Println(passwordValidator.Validate("password12"))
