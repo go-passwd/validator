@@ -12,13 +12,13 @@ import (
 
 func TestRatio(t *testing.T) {
 	r := validator.Ratio("abc", "abc")
-	assert.InEpsilon(t, 1.0, r, 1e-9) // Allow a small margin for floating-point precision
+	assert.InDelta(t, 1.0, r, 1e-9) // Allow a small margin for floating-point precision
 
 	r = validator.Ratio("abc", "def")
-	assert.InEpsilon(t, 0.0, r, 1e-9) // Allow a small margin for floating-point precision
+	assert.InDelta(t, 0.0, r, 1e-9) // Allow a small margin for floating-point precision
 
 	r = validator.Ratio("abcd", "bcde")
-	assert.InEpsilon(t, 0.75, r, 1e-9) // Allow a small margin for floating-point precision
+	assert.InDelta(t, 0.75, r, 1e-9) // Allow a small margin for floating-point precision
 }
 
 func ExampleSimilarity() {
