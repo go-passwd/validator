@@ -12,10 +12,12 @@ func ExampleCommonPassword() {
 	fmt.Println(passwordValidator("password"))
 	fmt.Println(passwordValidator("qaz123"))
 	fmt.Println(passwordValidator("pa$$w0rd@"))
+	fmt.Println(passwordValidator("Mod7tygrysow"))
 	// Output:
 	// Password can't be a commonly used password
 	// Password can't be a commonly used password
 	// <nil>
+	// Password can't be a commonly used password
 }
 
 func ExampleCommonPassword_customError() {
