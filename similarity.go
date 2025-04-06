@@ -19,7 +19,7 @@ func Similarity(attributes []string, maxSimilarity *float64, customError error) 
 				if customError != nil {
 					return customError
 				}
-				return fmt.Errorf("The password is too similar to the %s", attributes[idx])
+				return fmt.Errorf("the password is too similar to the %s", attributes[idx])
 			}
 		}
 		return nil

@@ -16,7 +16,7 @@ func ContainsAtLeast(chars string, occurrences int, customError error) ValidateF
 			if customError != nil {
 				return customError
 			}
-			return fmt.Errorf("Password must contains at least %d chars from %s", occurrences, chars)
+			return fmt.Errorf("password must contains at least %d chars from %s", occurrences, chars)
 		}
 		return nil
 	})
