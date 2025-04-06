@@ -1,0 +1,59 @@
+name: Tests
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        go-version: [1.23.x, 1.22.x, 1.21.x, 1.20.x, 1.19.x, 1.18.x, 1.17.x, 1.16.x, 1.15.x, 1.14.x, 1.13.x, 1.12.x]
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Go
+        uses: actions/setup-go@v4
+        with:
+          go-version: ${{ matrix.go-version }}
+
+      - name: Caching
+        uses: actions/cache@v3
+        with:
+          path: ~/go/pkg/mod
+          key: go-${{ hashFiles('**/go.sum') }}
+          restore-keys: go-
+
+      - name: Dependencies
+        run: go mod vendor
+
+      - name: Checksum
+        run: go mod verify
+
+      - name: Codestyle
+        uses: golangci/golangci-lint-action@v2
+        with:
+          # Optional: version of golangci-lint to use in form of v1.2 or v1.2.3 or `latest` to use the latest version
+          version: latest
+
+          # Optional: working directory, useful for monorepos
+          working-directory: ./
+
+          # Optional: golangci-lint command line arguments.
+          args: --timeout 200s --build-tags=musl
+
+      - name: Golang Vulncheck
+        uses: Templum/govulncheck-action@v0.10.1
+        with:
+          go-version: latest
+          vulncheck-version: latest
+          fail-on-vuln: true
+          package: ./...

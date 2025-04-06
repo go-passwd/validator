@@ -1,12 +1,14 @@
-package validator
+package validator_test
 
 import (
 	"errors"
 	"fmt"
+
+	"github.com/go-passwd/validator"
 )
 
 func ExampleContainsOnly() {
-	passwordValidator := ContainsOnly("abcdefghijklmnopqrstuvwxyz", nil)
+	passwordValidator := validator.ContainsOnly("abcdefghijklmnopqrstuvwxyz", nil)
 	fmt.Println(passwordValidator("password"))
 	fmt.Println(passwordValidator("password0"))
 	fmt.Println(passwordValidator("passWORD"))
@@ -18,7 +20,7 @@ func ExampleContainsOnly() {
 
 func ExampleContainsOnly_customError() {
 	err := errors.New("custom error message")
-	passwordValidator := ContainsOnly("abcdefghijklmnopqrstuvwxyz", err)
+	passwordValidator := validator.ContainsOnly("abcdefghijklmnopqrstuvwxyz", err)
 	fmt.Println(passwordValidator("password"))
 	fmt.Println(passwordValidator("password0"))
 	fmt.Println(passwordValidator("passWORD"))

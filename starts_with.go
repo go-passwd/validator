@@ -5,7 +5,7 @@ import (
 	"strings"
 )
 
-// StartsWith returns ValidateFunc that validate whether the password is starts with one of letter
+// StartsWith returns ValidateFunc that validate whether the password is starts with one of letter.
 func StartsWith(letters string, customError error) ValidateFunc {
 	return ValidateFunc(func(password string) error {
 		firstLetter := []rune(password)[0]

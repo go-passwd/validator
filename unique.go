@@ -5,7 +5,7 @@ import (
 	"strings"
 )
 
-// Unique returns ValidateFunc that validate whether the password has only unique chars
+// Unique returns ValidateFunc that validate whether the password has only unique chars.
 func Unique(customError error) ValidateFunc {
 	return ValidateFunc(func(password string) error {
 		runes := []rune(password)

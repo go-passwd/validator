@@ -1,12 +1,14 @@
-package validator
+package validator_test
 
 import (
 	"errors"
 	"fmt"
+
+	"github.com/go-passwd/validator"
 )
 
 func ExampleUnique() {
-	passwordValidator := Unique(nil)
+	passwordValidator := validator.Unique(nil)
 	fmt.Println(passwordValidator("bui87j"))
 	fmt.Println(passwordValidator("qwerte"))
 	// Output:
@@ -16,7 +18,7 @@ func ExampleUnique() {
 
 func ExampleUnique_customError() {
 	err := errors.New("custom error message")
-	passwordValidator := Unique(err)
+	passwordValidator := validator.Unique(err)
 	fmt.Println(passwordValidator("bui87j"))
 	fmt.Println(passwordValidator("qwerte"))
 	// Output:

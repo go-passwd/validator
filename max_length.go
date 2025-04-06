@@ -2,7 +2,7 @@ package validator
 
 import "fmt"
 
-// MaxLength returns a ValidateFunc that check if password length is not greater that "length"
+// MaxLength returns a ValidateFunc that check if password length is not greater that "length".
 func MaxLength(length int, customError error) ValidateFunc {
 	return ValidateFunc(func(password string) error {
 		if len(password) > length {

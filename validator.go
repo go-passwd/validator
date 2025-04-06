@@ -4,17 +4,17 @@ import (
 	"errors"
 )
 
-// Validator represents set of password validators
+// Validator represents set of password validators.
 type Validator []ValidateFunc
 
-// New return new instance of Validator
+// New return new instance of Validator.
 func New(vfunc ...ValidateFunc) *Validator {
 	v := Validator{}
 	v = append(v, vfunc...)
 	return &v
 }
 
-// Validate the password
+// Validate the password.
 func (v *Validator) Validate(password string) error {
 	if len(*v) == 0 {
 		return errors.New("Validator must contains at least 1 validator function")
