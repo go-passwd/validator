@@ -16,7 +16,7 @@ func Regex(pattern string, customError error) ValidateFunc {
 			if customError != nil {
 				return customError
 			}
-			return fmt.Errorf("Password shouldn't match \"%s\" pattern", pattern)
+			return fmt.Errorf("password shouldn't match \"%s\" pattern", pattern)
 		}
 		return nil
 	})

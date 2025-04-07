@@ -19,7 +19,7 @@ func CommonPassword(customError error) ValidateFunc {
 				if customError != nil {
 					return customError
 				}
-				return fmt.Errorf("Password can't be a commonly used password")
+				return fmt.Errorf("password can't be a commonly used password")
 			}
 		}
 		return nil

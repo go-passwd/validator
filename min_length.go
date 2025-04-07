@@ -9,7 +9,7 @@ func MinLength(length int, customError error) ValidateFunc {
 			if customError != nil {
 				return customError
 			}
-			return fmt.Errorf("Password length must be not lower that %d chars", length)
+			return fmt.Errorf("password length must be not lower that %d chars", length)
 		}
 		return nil
 	})
