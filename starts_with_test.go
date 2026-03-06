@@ -3,9 +3,17 @@ package validator_test
 import (
 	"errors"
 	"fmt"
+	"testing"
+
+	"github.com/stretchr/testify/assert"
 
 	"github.com/go-passwd/validator"
 )
+
+func TestStartsWith_emptyPassword(t *testing.T) {
+	v := validator.StartsWith("abc", nil)
+	assert.Error(t, v(""))
+}
 
 func ExampleStartsWith() {
 	passwordValidator := validator.StartsWith("abc", nil)
@@ -13,7 +21,7 @@ func ExampleStartsWith() {
 	fmt.Println(passwordValidator("qwerty"))
 	// Output:
 	// <nil>
-	// the password must starts with one of: abc
+	// the password must start with one of: abc
 }
 
 func ExampleStartsWith_customError() {

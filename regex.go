@@ -7,16 +7,16 @@ import (
 
 // Regex returns ValidateFunc that check if password match regexp pattern.
 func Regex(pattern string, customError error) ValidateFunc {
+	compiled, compileErr := regexp.Compile(pattern)
 	return ValidateFunc(func(password string) error {
-		matched, err := regexp.MatchString(pattern, password)
-		if err != nil {
-			return err
+		if compileErr != nil {
+			return compileErr
 		}
-		if matched {
+		if compiled.MatchString(password) {
 			if customError != nil {
 				return customError
 			}
-			return fmt.Errorf("password shouldn't match \"%s\" pattern", pattern)
+			return fmt.Errorf("Password shouldn't match \"%s\" pattern", pattern)
 		}
 		return nil
 	})

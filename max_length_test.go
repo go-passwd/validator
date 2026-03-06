@@ -3,9 +3,18 @@ package validator_test
 import (
 	"errors"
 	"fmt"
+	"testing"
+
+	"github.com/stretchr/testify/assert"
 
 	"github.com/go-passwd/validator"
 )
+
+func TestMaxLength_unicode(t *testing.T) {
+	v := validator.MaxLength(4, nil)
+	assert.NoError(t, v("łódź")) // 4 runy, 7 bajtów — powinno przejść
+	assert.Error(t, v("łódźx")) // 5 run — powinno nie przejść
+}
 
 func ExampleMaxLength() {
 	passwordValidator := validator.MaxLength(5, nil)

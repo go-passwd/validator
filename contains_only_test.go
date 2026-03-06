@@ -14,8 +14,8 @@ func ExampleContainsOnly() {
 	fmt.Println(passwordValidator("passWORD"))
 	// Output:
 	// <nil>
-	// the password must contains only abcdefghijklmnopqrstuvwxyz
-	// the password must contains only abcdefghijklmnopqrstuvwxyz
+	// The password must contain only abcdefghijklmnopqrstuvwxyz
+	// The password must contain only abcdefghijklmnopqrstuvwxyz
 }
 
 func ExampleContainsOnly_customError() {

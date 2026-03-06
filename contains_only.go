@@ -16,7 +16,7 @@ func ContainsOnly(chars string, customError error) ValidateFunc {
 				if customError != nil {
 					return customError
 				}
-				return fmt.Errorf("the password must contains only %s", chars)
+				return fmt.Errorf("The password must contain only %s", chars)
 			}
 		}
 		return nil

@@ -17,7 +17,7 @@ func New(vfunc ...ValidateFunc) *Validator {
 // Validate the password.
 func (v *Validator) Validate(password string) error {
 	if len(*v) == 0 {
-		return errors.New("Validator must contains at least 1 validator function")
+		return errors.New("Validator must contain at least 1 validator function")
 	}
 	for _, passwordValidator := range *v {
 		err := passwordValidator(password)

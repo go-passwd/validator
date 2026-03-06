@@ -19,7 +19,7 @@ func Similarity(attributes []string, maxSimilarity *float64, customError error) 
 				if customError != nil {
 					return customError
 				}
-				return fmt.Errorf("the password is too similar to the %s", attributes[idx])
+				return fmt.Errorf("The password is too similar to the %s", attributes[idx])
 			}
 		}
 		return nil
@@ -32,6 +32,9 @@ func Similarity(attributes []string, maxSimilarity *float64, customError error) 
 // Note that this is 1 if the sequences are identical, and 0 if they have nothing in common.
 func Ratio(pass, attr string) float64 {
 	totalChars := float64(len(pass) + len(attr))
+	if totalChars == 0 {
+		return 1.0
+	}
 	matches := 0.0
 
 	for _, char := range attr {

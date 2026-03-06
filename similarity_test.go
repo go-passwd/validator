@@ -3,12 +3,18 @@ package validator_test
 import (
 	"errors"
 	"fmt"
+	"math"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
 
 	"github.com/go-passwd/validator"
 )
+
+func TestRatio_bothEmpty(t *testing.T) {
+	r := validator.Ratio("", "")
+	assert.False(t, math.IsNaN(r))
+}
 
 func TestRatio(t *testing.T) {
 	r := validator.Ratio("abc", "abc")
