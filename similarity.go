@@ -3,6 +3,7 @@ package validator
 import (
 	"fmt"
 	"strings"
+	"unicode/utf8"
 )
 
 // Similarity returns ValidateFunc that validate whether the password is sufficiently different from the attributes
@@ -31,7 +32,7 @@ func Similarity(attributes []string, maxSimilarity *float64, customError error) 
 // Where T is the total number of elements in both sequences, and M is the number of matches, this is 2.0*M / T.
 // Note that this is 1 if the sequences are identical, and 0 if they have nothing in common.
 func Ratio(pass, attr string) float64 {
-	totalChars := float64(len(pass) + len(attr))
+	totalChars := float64(utf8.RuneCountInString(pass) + utf8.RuneCountInString(attr))
 	if totalChars == 0 {
 		return 1.0
 	}

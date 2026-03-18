@@ -12,8 +12,8 @@ import (
 
 func TestMinLength_unicode(t *testing.T) {
 	v := validator.MinLength(4, nil)
-	assert.NoError(t, v("łódź")) // 4 runy, 7 bajtów — powinno przejść
-	assert.Error(t, v("łód"))   // 3 runy — powinno nie przejść
+	assert.NoError(t, v("łódź")) // 4 runes, 7 bytes — should pass
+	assert.Error(t, v("łód"))   // 3 runes — should fail
 }
 
 func ExampleMinLength() {
@@ -23,7 +23,7 @@ func ExampleMinLength() {
 	fmt.Println(passwordValidator("passw"))
 	// Output:
 	// <nil>
-	// Password length must be not lower that 5 chars
+	// Password length must be not lower than 5 chars
 	// <nil>
 }
 

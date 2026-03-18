@@ -12,8 +12,8 @@ import (
 
 func TestMaxLength_unicode(t *testing.T) {
 	v := validator.MaxLength(4, nil)
-	assert.NoError(t, v("łódź")) // 4 runy, 7 bajtów — powinno przejść
-	assert.Error(t, v("łódźx")) // 5 run — powinno nie przejść
+	assert.NoError(t, v("łódź")) // 4 runes, 7 bytes — should pass
+	assert.Error(t, v("łódźx")) // 5 runes — should fail
 }
 
 func ExampleMaxLength() {
@@ -22,7 +22,7 @@ func ExampleMaxLength() {
 	fmt.Println(passwordValidator("pass"))
 	fmt.Println(passwordValidator("passw"))
 	// Output:
-	// Password length must be not greater that 5 chars
+	// Password length must be not greater than 5 chars
 	// <nil>
 	// <nil>
 }

@@ -3,9 +3,21 @@ package validator_test
 import (
 	"errors"
 	"fmt"
+	"testing"
+
+	"github.com/stretchr/testify/assert"
 
 	"github.com/go-passwd/validator"
 )
+
+func TestCommonPassword_caseInsensitive(t *testing.T) {
+	v := validator.CommonPassword(nil)
+	// "password" is in the list — all case variants must be rejected
+	assert.Error(t, v("password"))
+	assert.Error(t, v("Password"))
+	assert.Error(t, v("PASSWORD"))
+	assert.Error(t, v("pAsSwOrD"))
+}
 
 func ExampleCommonPassword() {
 	passwordValidator := validator.CommonPassword(nil)

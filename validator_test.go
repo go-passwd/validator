@@ -36,6 +36,6 @@ func ExampleValidator_Validate() {
 	// <nil>
 	// <nil>
 	// <nil>
-	// Password length must be not lower that 5 chars
-	// Password length must be not greater that 10 chars
+	// Password length must be not lower than 5 chars
+	// Password length must be not greater than 10 chars
 }
